@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'smart_selects',
     # My apps
     'people',
+    'products',
 ]
 
 MIDDLEWARE = [

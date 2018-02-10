@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
@@ -24,6 +24,7 @@ urlpatterns = [
     path('media/', serve, {
             'document_root': settings.MEDIA_ROOT
         }),
+    path('chaining/', include('smart_selects.urls')),  # Django smart-selects
 ]
 
 if settings.DEBUG:
