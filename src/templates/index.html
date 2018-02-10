@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block head_title %} {{ title }}  {% endblock %}
+
+{% block content %}
+
+    {% include 'sidebar.html' %}
+
+    {% include 'carousel.html' %}
+
+    {% include 'offers.html' %}
+
+{% endblock %}

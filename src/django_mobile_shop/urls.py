@@ -18,13 +18,21 @@ from django.urls import path, include
 from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+
+from . import views
 
 urlpatterns = [
+    path('', views.home, name='home'),
     path('admin/', admin.site.urls),
     path('media/', serve, {
             'document_root': settings.MEDIA_ROOT
         }),
     path('chaining/', include('smart_selects.urls')),  # Django smart-selects
+    # Generic views
+    path('about/', TemplateView.as_view(template_name='about.html')),
+    path('services/', TemplateView.as_view(template_name='services.html')),
+    path('contact/', TemplateView.as_view(template_name='contact.html')),
 ]
 
 if settings.DEBUG:
