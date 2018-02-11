@@ -1,9 +1,8 @@
 from django.db import models
-# from django.core.validators import MaxValueValidator, MinValueValidator
+
+from django.utils.safestring import mark_safe
 
 from sorl.thumbnail import ImageField
-# from model_utils.models import TimeStampedModel
-# from audit_log.models import AuthStampedModel
 from smart_selects.db_fields import ChainedForeignKey
 
 
@@ -86,8 +85,7 @@ class Product(models.Model):
         """
         picture = ProductPicture.objects.filter(product_id=self.id).first()
         if picture:
-            return u'<img src="%s" width="60" height="75" />'\
-                % picture
+            return mark_safe('<img src="%s" width="70" height="75" />' % picture)
         else:
             return ' '
 
@@ -109,13 +107,12 @@ class ProductPicture(models.Model):
 
     def get_image_tag(self):
         if self.picture:
-            return u'<img src="%s" width="60" height="75" />'\
-                % self.picture.url
+            return mark_safe('<img src="%s" width="60" height="75" />' % self.picture)
         else:
             return ' '
     get_image_tag.short_description = 'Photo'
     get_image_tag.allow_tags = True
-    # get_image_tag.admin_order_field = 'name'
+    get_image_tag.admin_order_field = 'name'
 
 
 class Offer(models.Model):
@@ -138,9 +135,9 @@ class Offer(models.Model):
 
     def get_image_tag(self):
         if self.picture:
-            return u'<img src="%s" width="60" height="75" />'\
-                % self.picture.url
+            return mark_safe('<img src="%s" width="60" height="75" />' % self.picture.url)
         else:
             return ' '
     get_image_tag.short_description = 'Photo'
     get_image_tag.allow_tags = True
+    get_image_tag.admin_order_field = 'name'
