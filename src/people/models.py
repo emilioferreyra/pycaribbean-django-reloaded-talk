@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 # from datetime import date
 # from django.core.exceptions import ValidationError
 # from django.shortcuts import get_object_or_404
@@ -98,10 +99,9 @@ class Person(models.Model):
 
     def image_tag(self):
         if self.picture:
-            return u'<img src="%s" width="60" height="75" />'\
-                % self.picture.url
+            return mark_safe('<img src="%s" width="60" height="75" />' % self.picture.url)
         else:
             return ' '
-    image_tag.short_description = 'Photo'
-    image_tag.allow_tags = True
+    image_tag.short_description = "Photo"
+    image_tag.allows_tags = True
     image_tag.admin_order_field = 'name'

@@ -15,20 +15,8 @@ class ModelInlines(admin.StackedInline):
 class MakeAdmin(admin.ModelAdmin):
     list_display = ['name', 'model']
     search_fields = ['name', 'model__name']
-    list_filter = ('model',)
+    list_filter = ['model']
     inlines = [ModelInlines]
-
-
-# @admin.register(Model)
-# class ModelAdmin(admin.ModelAdmin):
-#     list_display = ['name', 'make']
-#     list_filter = ['make']
-#     search_fields = ['name']
-
-
-# @admin.register(ProductType)
-# class ProductTypeAdmin(admin.ModelAdmin):
-#     pass
 
 
 class ProductPictureInline(AdminImageMixin, admin.TabularInline):

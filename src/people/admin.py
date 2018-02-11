@@ -23,7 +23,6 @@ class PersonTypeAdmin(admin.ModelAdmin):
 
 
 @admin.register(Person)
-# class PersonAdmin(AdminImageMixin, ImportExportModelAdmin):
 class PersonAdmin(AdminImageMixin, ImportExportModelAdmin):
     resources = PersonResource  # Use resources PersonResource
 
@@ -45,7 +44,6 @@ class PersonAdmin(AdminImageMixin, ImportExportModelAdmin):
         'email',
         'status_active'
     )
-    # readonly_fields = ('image_tag',)
     list_display_links = ('image_tag', 'name',)
     search_fields = ['name']
     list_filter = (
