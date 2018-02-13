@@ -116,12 +116,19 @@ class ProductPicture(models.Model):
 
 
 class Offer(models.Model):
+    ONE_TO_FIVE_RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
     product = models.ForeignKey('Product', on_delete=models.PROTECT)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     reviews = models.PositiveIntegerField(null=True)
-    stars = models.PositiveSmallIntegerField(null=True)
+    stars = models.PositiveSmallIntegerField(choices=ONE_TO_FIVE_RATING_CHOICES)
     comment = models.TextField(max_length=200, null=True)
     active = models.BooleanField(default=True)
     picture = ImageField(upload_to='product_pictures', null=True, blank=True)
