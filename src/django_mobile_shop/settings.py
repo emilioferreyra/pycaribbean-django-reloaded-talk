@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'django_extensions',
     'import_export',
     'smart_selects',
+    'tinymce',
     # My apps
     'people',
     'products',
+    'pages',
 ]
 
 MIDDLEWARE = [

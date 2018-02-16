@@ -29,10 +29,14 @@ urlpatterns = [
             'document_root': settings.MEDIA_ROOT
         }),
     path('chaining/', include('smart_selects.urls')),  # Django smart-selects
+    path('tinymce/', include('tinymce.urls')),
     # Generic views
-    path('about/', TemplateView.as_view(template_name='about.html')),
-    path('services/', TemplateView.as_view(template_name='services.html')),
-    path('contact/', TemplateView.as_view(template_name='contact.html')),
+    # path('about/', TemplateView.as_view(template_name='about.html')),
+    # path('services/', TemplateView.as_view(template_name='services.html')),
+    # path('contact/', TemplateView.as_view(template_name='contact.html')),
+    path('about/', views.about, name='about'),
+    path('services/', views.services, name='services'),
+    path('contact/', views.contact, name='contact'),
 ]
 
 if settings.DEBUG:

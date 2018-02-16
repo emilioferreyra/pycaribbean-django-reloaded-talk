@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block head_title %}Services | DMS{% endblock %}
+{% block head_title %}{{ services }} | DMS{% endblock %}
 
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
 
         {% block content %}
-            <h1>Services</h1>
+            <h1>{{ services }}</h1>
 
-            <p>This is services page.</p>
+            <p>{{ content }}</p>
         {% endblock content %}
 
     </div>
