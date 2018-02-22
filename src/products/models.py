@@ -115,6 +115,11 @@ class ProductPicture(models.Model):
     get_image_tag.admin_order_field = 'name'
 
 
+# def limit_product_choices():
+#     product_without_active_offer = Product.objects.filter(offer__isnull=True)[:1]
+#     return {'id': product_without_active_offer}
+
+
 class Offer(models.Model):
     ONE_TO_FIVE_RATING_CHOICES = (
         (1, '1'),
@@ -126,7 +131,9 @@ class Offer(models.Model):
     product = models.ForeignKey(
         'Product',
         on_delete=models.PROTECT,
-        verbose_name='Product name'
+        verbose_name='Product name',
+        db_constraint=True,
+        # limit_choices_to=limit_product_choices
     )
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
@@ -154,3 +161,6 @@ class Offer(models.Model):
     get_image_tag.short_description = 'Photo'
     get_image_tag.allow_tags = True
     get_image_tag.admin_order_field = 'name'
+
+
+

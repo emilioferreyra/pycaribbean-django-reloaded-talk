@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django import forms
+from django.db.models import Q
 
 from sorl.thumbnail.admin import AdminImageMixin
 
@@ -44,8 +46,21 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductPictureInline]
 
 
+class OfferForm(forms.ModelForm):
+    """
+    This modelform is used to limit the product offer to those product that
+    have no offer yet or active ones.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(OfferForm, self).__init__(*args, **kwargs)
+        if 'initial' in kwargs:
+            self.fields['product'].queryset = Product.objects.filter(Q(offer__isnull=True) | Q(offer__active=False))
+
+
 @admin.register(Offer)
 class OfferAdmin(AdminImageMixin, admin.ModelAdmin):
+    form = OfferForm
     list_display = [
         'get_image_tag',
         'product',
