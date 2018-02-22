@@ -18,7 +18,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
 
 from . import views
 
@@ -30,10 +29,6 @@ urlpatterns = [
         }),
     path('chaining/', include('smart_selects.urls')),  # Django smart-selects
     path('tinymce/', include('tinymce.urls')),
-    # Generic views
-    # path('about/', TemplateView.as_view(template_name='about.html')),
-    # path('services/', TemplateView.as_view(template_name='services.html')),
-    # path('contact/', TemplateView.as_view(template_name='contact.html')),
     path('about/', views.about, name='about'),
     path('services/', views.services, name='services'),
     path('contact/', views.contact, name='contact'),
