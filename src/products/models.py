@@ -1,5 +1,6 @@
-from django.db import models
+from datetime import datetime
 
+from django.db import models
 from django.utils.safestring import mark_safe
 
 from sorl.thumbnail import ImageField
@@ -115,11 +116,6 @@ class ProductPicture(models.Model):
     get_image_tag.admin_order_field = 'name'
 
 
-# def limit_product_choices():
-#     product_without_active_offer = Product.objects.filter(offer__isnull=True)[:1]
-#     return {'id': product_without_active_offer}
-
-
 class Offer(models.Model):
     ONE_TO_FIVE_RATING_CHOICES = (
         (1, '1'),
@@ -132,11 +128,10 @@ class Offer(models.Model):
         'Product',
         on_delete=models.PROTECT,
         verbose_name='Product name',
-        db_constraint=True,
-        # limit_choices_to=limit_product_choices
+        db_constraint=True
     )
     start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    expiration_date = models.DateTimeField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     reviews = models.PositiveIntegerField(null=True)
     stars = models.PositiveSmallIntegerField(choices=ONE_TO_FIVE_RATING_CHOICES)
@@ -161,6 +156,3 @@ class Offer(models.Model):
     get_image_tag.short_description = 'Photo'
     get_image_tag.allow_tags = True
     get_image_tag.admin_order_field = 'name'
-
-
-

@@ -65,14 +65,14 @@ class OfferAdmin(AdminImageMixin, admin.ModelAdmin):
         'get_image_tag',
         'product',
         'start_date',
-        'end_date',
+        'expiration_date',
         'price',
         'active'
     ]
 
     list_display_links = ['get_image_tag', 'product']
 
-    list_editable = ['active']
+    # list_editable = ['active']
 
 
 admin.site.register(ProductType)
