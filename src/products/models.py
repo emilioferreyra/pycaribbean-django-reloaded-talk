@@ -123,7 +123,11 @@ class Offer(models.Model):
         (4, '4'),
         (5, '5'),
     )
-    product = models.ForeignKey('Product', on_delete=models.PROTECT)
+    product = models.ForeignKey(
+        'Product',
+        on_delete=models.PROTECT,
+        verbose_name='Product name'
+    )
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -136,6 +140,8 @@ class Offer(models.Model):
     class Meta:
         verbose_name = "Offer"
         verbose_name_plural = "Offers"
+        ordering = ['-id']
+        unique_together = (('product', 'active'),)
 
     def __str__(self):
         return str(self.product)
