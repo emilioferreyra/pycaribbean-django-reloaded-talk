@@ -67,12 +67,27 @@ class OfferAdmin(AdminImageMixin, admin.ModelAdmin):
         'start_date',
         'expiration_date',
         'price',
-        'active'
+        'active',
+        'status_active_offer'
     ]
 
     list_display_links = ['get_image_tag', 'product']
 
-    # list_editable = ['active']
+    fieldsets = [
+        (None, {
+            'fields': ('product', 'picture', 'price', 'product_description')
+        }),
+        ('Offer Period', {
+            'classes': ('wide'),
+            'fields': ('start_date', 'expiration_date'),
+        }),
+        ('Reviews', {
+            'classes': ('collapse',),
+            'fields': ('reviews', 'stars'),
+        }),
+    ]
+
+    readonly_fields = ['active', ]
 
 
 admin.site.register(ProductType)

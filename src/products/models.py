@@ -1,7 +1,6 @@
-from datetime import datetime
-
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.utils import timezone
 
 from sorl.thumbnail import ImageField
 from smart_selects.db_fields import ChainedForeignKey
@@ -43,7 +42,6 @@ class Model(models.Model):
 
 
 class ProductFeature(models.Model):
-
     class Meta:
         verbose_name = "Product Feature"
         verbose_name_plural = "Product Features"
@@ -111,6 +109,7 @@ class ProductPicture(models.Model):
             return mark_safe('<img src="%s" width="60" height="75" />' % self.picture)
         else:
             return ' '
+
     get_image_tag.short_description = 'Photo'
     get_image_tag.allow_tags = True
     get_image_tag.admin_order_field = 'name'
@@ -135,7 +134,7 @@ class Offer(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     reviews = models.PositiveIntegerField(null=True)
     stars = models.PositiveSmallIntegerField(choices=ONE_TO_FIVE_RATING_CHOICES)
-    comment = models.TextField(max_length=200, null=True)
+    product_description = models.TextField(max_length=200, null=True)
     active = models.BooleanField(default=True)
     picture = ImageField(upload_to='product_pictures', null=True, blank=True)
 
@@ -153,6 +152,24 @@ class Offer(models.Model):
             return mark_safe('<img src="%s" width="60" height="75" />' % self.picture.url)
         else:
             return ' '
+
     get_image_tag.short_description = 'Photo'
     get_image_tag.allow_tags = True
     get_image_tag.admin_order_field = 'name'
+
+    def status_active_offer(self):
+
+        now = timezone.now()
+        start_date = self.start_date
+        expiration_date = self.expiration_date
+        offer_active_state = self.active
+
+        if start_date <= now <= expiration_date:
+            Offer.objects.filter(pk=self.id).update(active=True)
+        else:
+            Offer.objects.filter(pk=self.id).update(active=False)
+        return offer_active_state
+
+    status_active_offer.short_description = 'Status'
+    status_active_offer.boolean = True
+    status_active_offer.admin_order_field = 'name'
