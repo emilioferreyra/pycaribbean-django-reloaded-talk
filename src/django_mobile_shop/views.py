@@ -1,11 +1,23 @@
+# Django core
 from django.shortcuts import render
-from products.models import Offer
+from django.utils import timezone
+
 from pages.models import Page
+# My apps
+from products.models import Offer
 
 
 def home(request):
     title = 'Welcome to DMS'
-    offers = Offer.objects.filter(active=True).order_by('id')[:6]
+    now = timezone.now()
+    offers = Offer.objects.filter(start_date__lte=now, expiration_date__gte=now).order_by('id')[:6]
+
+    for o in offers:
+        if o.start_date <= now <= o.expiration_date:
+            Offer.objects.filter(pk=o.id).update(active=True)
+        else:
+            Offer.objects.filter(pk=o.id).update(active=False)
+
     context = {'title': title, 'offers': offers}
     return render(request, 'index.html', context)
 
