@@ -1,7 +1,6 @@
-from django.contrib import admin
 from django import forms
+from django.contrib import admin
 from django.db.models import Q
-
 from sorl.thumbnail.admin import AdminImageMixin
 
 from .models import Make, Model, ProductType, Product, ProductPicture, Offer
@@ -67,7 +66,6 @@ class OfferAdmin(AdminImageMixin, admin.ModelAdmin):
         'start_date',
         'expiration_date',
         'price',
-        'active',
         'status_active_offer'
     ]
 
