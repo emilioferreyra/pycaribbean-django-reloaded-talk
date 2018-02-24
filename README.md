@@ -53,7 +53,10 @@ $ python manage.py runserver
 
 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-![home](https://github.com/emilioferreyra/django_mobile_shop/blob/master/docs/screenshots/dms_home.png?raw=true)
+
+Página principal:
+
+![home_page](https://github.com/emilioferreyra/pycaribbean-django-reloaded-talk/blob/master/src/docs/screenshots/home-page.png)
 
 
 
@@ -66,9 +69,7 @@ $ python manage.py runserver
 
 **Password:** djangoadmin123
 
-Página principal: 
 
-![home_page](https://github.com/emilioferreyra/pycaribbean-django-reloaded-talk/blob/master/src/docs/screenshots/home-page.png)
 
 Lista de personas:
 ![persons_list](https://github.com/emilioferreyra/pycaribbean-django-reloaded-talk/blob/master/src/docs/screenshots/person-list.png)
