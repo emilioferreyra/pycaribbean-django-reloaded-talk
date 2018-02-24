@@ -66,16 +66,18 @@ $ python manage.py runserver
 
 **Password:** djangoadmin123
 
+Página principal: 
 
+![home_page](https://github.com/emilioferreyra/pycaribbean-django-reloaded-talk/blob/master/src/docs/screenshots/home-page.png)
 
 Lista de personas:
-![persons_list](https://github.com/emilioferreyra/django_mobile_shop/blob/master/docs/screenshots/person_list.png?raw=true)
+![persons_list](https://github.com/emilioferreyra/pycaribbean-django-reloaded-talk/blob/master/src/docs/screenshots/person-list.png)
 
 
-Lista de productos:
-![products_list](https://github.com/emilioferreyra/django_mobile_shop/blob/master/docs/screenshots/mobile_list.png?raw=true)
+Detalle de producto:
+![products_detail](https://github.com/emilioferreyra/pycaribbean-django-reloaded-talk/blob/master/src/docs/screenshots/product-detail.png)
 
-Algunas imágenes más [aquí](https://github.com/emilioferreyra/django_mobile_shop/tree/master/docs/screenshots)
+Algunas imágenes más [aquí](https://github.com/emilioferreyra/pycaribbean-django-reloaded-talk/tree/master/src/docs/screenshots)
 
 
 ---
@@ -114,7 +116,7 @@ Tutorial oficial de Django [Django Project - Tutorial](https://docs.djangoprojec
 
 ### Comercio electrónico (e-commerce).
 
-* [Orcar](http://oscarcommerce.com/)
+* [Oscar](http://oscarcommerce.com/)
 
 ### Otros
 
