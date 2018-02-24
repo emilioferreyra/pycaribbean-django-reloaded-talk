@@ -1,11 +1,13 @@
+# Django core
 from django.db import models
 
-from tinymce.models import HTMLField
+# Third party
+from djrichtextfield.models import RichTextField
 
 
 class Page(models.Model):
     title = models.CharField(max_length=30, unique=True)
-    content = HTMLField()
+    content = RichTextField()
 
     def __str__(self):
         return self.title

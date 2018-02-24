@@ -10,13 +10,13 @@ from products.models import Offer
 def home(request):
     title = 'Welcome to DMS'
     now = timezone.now()
-    offers = Offer.objects.filter(start_date__lte=now, expiration_date__gte=now).order_by('id')[:6]
+    offers = Offer.objects.filter(start_date__lte=now, expiration_date__gte=now).order_by('-id')[:6]
 
     for o in offers:
         if o.start_date <= now <= o.expiration_date:
-            Offer.objects.filter(pk=o.id).update(active=True)
+            Offer.objects.filter(pk=o.id, active=False).update(active=True)
         else:
-            Offer.objects.filter(pk=o.id).update(active=False)
+            Offer.objects.filter(pk=o.id, active=True).update(active=False)
 
     context = {'title': title, 'offers': offers}
     return render(request, 'index.html', context)
