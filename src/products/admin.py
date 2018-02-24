@@ -76,11 +76,11 @@ class OfferAdmin(AdminImageMixin, admin.ModelAdmin):
             'fields': ('product', 'picture', 'price', 'product_description')
         }),
         ('Offer Period', {
-            'classes': ('wide'),
+            'classes': ('wide',),
             'fields': ('start_date', 'expiration_date'),
         }),
         ('Reviews', {
-            'classes': ('collapse',),
+            'classes': ('wide',),
             'fields': ('reviews', 'stars'),
         }),
     ]

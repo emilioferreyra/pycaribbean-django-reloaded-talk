@@ -1,9 +1,8 @@
 from django.db import models
-from django.utils.safestring import mark_safe
 from django.utils import timezone
-
-from sorl.thumbnail import ImageField
+from django.utils.safestring import mark_safe
 from smart_selects.db_fields import ChainedForeignKey
+from sorl.thumbnail import ImageField
 
 
 class ProductType(models.Model):
@@ -165,9 +164,9 @@ class Offer(models.Model):
         offer_active_state = self.active
 
         if start_date <= now <= expiration_date:
-            Offer.objects.filter(pk=self.id).update(active=True)
+            Offer.objects.filter(pk=self.id, active=False).update(active=True)
         else:
-            Offer.objects.filter(pk=self.id).update(active=False)
+            Offer.objects.filter(pk=self.id, active=True).update(active=False)
         return offer_active_state
 
     status_active_offer.short_description = 'Status'
