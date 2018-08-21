@@ -87,5 +87,9 @@ class OfferAdmin(AdminImageMixin, admin.ModelAdmin):
 
     readonly_fields = ['active', ]
 
+    list_filter = ['active', 'product']
+
+    search_fields = ['product__make__name', 'product__model__name']
+
 
 admin.site.register(ProductType)
