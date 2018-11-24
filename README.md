@@ -36,7 +36,7 @@ $ source bin/activate
 5. Instalar las librerias usando pip y el archivo de requerimientos (requeriments.txt):
 
 ```
-$ pip install -r requeriments.txt
+$ pip install -r src/requeriments.txt
 ```
 
 6. Entramos al directorio src y ejecutar el comando que activa el servidor de desarrollo:
