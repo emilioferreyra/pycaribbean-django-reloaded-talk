@@ -136,6 +136,8 @@ class Offer(models.Model):
     product_description = models.TextField(max_length=200, null=True)
     active = models.BooleanField(default=True)
     picture = ImageField(upload_to='product_pictures', null=True, blank=True)
+    created = models.TimeField(auto_now_add=True, null=True)
+    updated = models.TimeField(auto_now=True, null=True)
 
     class Meta:
         verbose_name = "Offer"
