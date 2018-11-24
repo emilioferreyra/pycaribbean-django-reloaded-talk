@@ -1,13 +1,7 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-# from datetime import date
-# from django.core.exceptions import ValidationError
-# from django.shortcuts import get_object_or_404
 
 from sorl.thumbnail import ImageField
-# from model_utils.models import TimeStampedModel
-# from audit_log.models import AuthStampedModel
-# from localflavor.us.models import PhoneNumberField
 
 
 d = dict(
